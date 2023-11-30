@@ -9,7 +9,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ numberOfItemsInCart = 0 }) => {
   return (
-    <header>
+    <header className="fixed top-0 w-full z-10">
       <div className="bg-white h-20 flex items-center">
         <div className="flex justify-between px-32 w-full items-center">
           <div className="flex flex-col items-center">
