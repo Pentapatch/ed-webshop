@@ -5,9 +5,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Torkade Blommor - Prenumerera på blommor - Blombud - Blombruket",
+  title: "Naturliga Torkade Blommor - Stort Unikt Utbud - Blombruket",
   description:
-    "Snittblommor med lång hållbarhet. Prova en bukett, skicka blombud eller prenumerera på blommor. Stort unikt utbud av torkade blommor.",
+    "Upptäck vårt stora sortiment av torkade blommor. Naturliga blommor odlade i Europa. Välj storlek på din bunt och gör din egen torkade bukett.",
 };
 
 export default function RootLayout({

@@ -1,9 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https: //use.typekit.net/igm8ala.css');
 
 :root {
-  --background-rgb: 255, 255, 255;
+  --background-rgb: 200, 200, 200;
   --foreground-rgb: 0, 0, 0;
 }
 
