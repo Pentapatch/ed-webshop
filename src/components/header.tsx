@@ -11,19 +11,18 @@ const Header: React.FC<HeaderProps> = ({ numberOfItemsInCart = 0 }) => {
   return (
     <header className="fixed top-0 w-full z-10">
       <div className="bg-white h-20 flex items-center">
-        <div className="flex justify-between px-32 w-full items-center">
+        <div className="flex justify-between px-56 w-full items-center">
           <div className="flex flex-col items-center">
             <MenuIcon fontSize="large" />
             <p className="font-brandonGrotesque uppercase text-xs">Meny</p>
           </div>
-          <div>
-            <Image
-              src="/blombruket-logo.svg"
-              width={200}
-              height={50}
-              alt="Blombrukets logotyp"
-            />
-          </div>
+          <Image
+            src="/blombruket-logo.svg"
+            width={200}
+            height={50}
+            alt="Blombrukets logotyp"
+            className="ml-24"
+          />
           <div className="flex gap-5">
             <div className="flex flex-col items-center">
               <PersonOutlineOutlinedIcon fontSize="large" />
