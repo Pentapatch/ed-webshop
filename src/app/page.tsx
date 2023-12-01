@@ -6,10 +6,10 @@ export default function Home() {
     <main className="">
       <link rel="stylesheet" href="https://use.typekit.net/igm8ala.css"></link>
       <link rel="icon" href="/favicon.png" />
-      <Header containerWidth="3/4" />
+      <Header />
       <div className="mt-14 md:mt-20"></div>
       {/* Content here */}
-      <Footer containerWidth="3/4" />
+      <Footer />
     </main>
   );
 }

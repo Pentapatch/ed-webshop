@@ -1,8 +1,6 @@
 import Image from "next/image";
 
-interface FooterProps {
-  containerWidth: string;
-}
+interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = () => {
   return (
