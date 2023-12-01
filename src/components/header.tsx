@@ -7,12 +7,16 @@ import Logotype from "./logotype";
 
 interface HeaderProps {
   numberOfItemsInCart?: number;
+  containerWidth: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ numberOfItemsInCart = 0 }) => {
+const Header: React.FC<HeaderProps> = ({
+  numberOfItemsInCart = 0,
+  containerWidth,
+}) => {
   return (
     <header className="bg-white fixed top-0 w-full z-10 flex justify-center">
-      <div className="w-full md:w-3/4">
+      <div className={`w-full md:w-${containerWidth}`}>
         <div className="h-14 flex items-center md:h-20">
           <div className="flex justify-between w-full items-center">
             <ActionIcon

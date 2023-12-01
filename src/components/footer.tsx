@@ -1,6 +1,8 @@
 import Image from "next/image";
 
-interface FooterProps {}
+interface FooterProps {
+  containerWidth: string;
+}
 
 const Footer: React.FC<FooterProps> = () => {
   return (
@@ -14,30 +16,30 @@ const Footer: React.FC<FooterProps> = () => {
         />
         <div>
           <h6 className="text-xl uppercase mb-6">Information</h6>
-          <p>
-            <a href="#">Nyhetsbrev</a>
-          </p>
-          <p>
-            <a href="#">Mina sidor</a>
-          </p>
-          <p>
-            <a href="#">Frågor och svar</a>
-          </p>
-          <p>
-            <a href="#">Våra villkor</a>
-          </p>
-          <p>
-            <a href="#">Integritetspolicy</a>
-          </p>
+          <a href="#" className="block">
+            Nyhetsbrev
+          </a>
+          <a href="#" className="block">
+            Mina sidor
+          </a>
+          <a href="#" className="block">
+            Frågor och svar
+          </a>
+          <a href="#" className="block">
+            Våra villkor
+          </a>
+          <a href="#" className="block">
+            Integritetspolicy
+          </a>
         </div>
         <div>
           <h6 className="text-xl uppercase">Kontakt</h6>
-          <p className="mt-6">
-            <a href="mailto:info@blombruket.se">info@blombruket.se</a>
-          </p>
-          <p>
-            <a href="tel:010-122 12 30">010-122 12 30</a>
-          </p>
+          <a href="mailto:info@blombruket.se" className="block mt-6">
+            info@blombruket.se
+          </a>
+          <a href="tel:010-122 12 30" className="block">
+            010-122 12 30
+          </a>
           <p>Södra vägen 30</p>
           <p>392 45 Kalmar</p>
           <p>559217-9567</p>
