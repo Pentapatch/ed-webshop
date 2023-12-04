@@ -64,15 +64,17 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
             <h3 className="mt-8 uppercase text-xl mb-2">
               TIPS FÖR TORKADE BLOMMOR:
             </h3>
-            <ul className="mb-8">
-              <li>Klipp stjälkarna med en sax eller sekatör</li>
+            <ul className="mb-8 space-y-2">
+              <li>✔︎ Klipp stjälkarna med en sax eller sekatör</li>
               <li>
-                Använd sand i botten på vasen för att hålla stjälkarna på plats
+                ✔︎ Använd sand i botten på vasen för att hålla stjälkarna på
+                plats
               </li>
               <li>
-                Använd en hårfön för att blåsa bort eventuellt damm som bildas
+                ✔︎ Använd en hårfön för att blåsa bort eventuellt damm som
+                bildas
               </li>
-              <li>Förvara blommorna i lådan som medföljer</li>
+              <li>✔︎ Förvara blommorna i lådan som medföljer</li>
             </ul>
           </div>
         </div>
