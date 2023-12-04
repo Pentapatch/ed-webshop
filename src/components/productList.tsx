@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "@/services/productService";
 import { FlowerProductListDto } from "@/contracts/flowerProductListDto";
+import ProductCard from "./productCard";
 
 interface ProductListProps {}
 
@@ -34,10 +35,15 @@ const ProductList: React.FC<ProductListProps> = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full md:w-3/4">
-        {products &&
-          products.map((product, index) => <p key={index}>{product.title}</p>)}
+        {/* Lista med 4 i bredd */}
+        <div className="grid grid-cols-2 md:grid-cols-4 grid-flow-row gap-4">
+          {products &&
+            products.map((product, index) => (
+              <ProductCard key={index} product={product} />
+            ))}
 
-        <p>{loadingError}</p>
+          <p>{loadingError}</p>
+        </div>
       </div>
     </div>
   );
