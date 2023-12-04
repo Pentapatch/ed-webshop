@@ -2,12 +2,16 @@ import { FlowerProductListDto } from "@/contracts/flowerProductListDto";
 
 interface BuyButtonProps {
   product: FlowerProductListDto;
+  onClick: (id: number) => void;
 }
 
-const BuyButton: React.FC<BuyButtonProps> = ({ product }) => {
+const BuyButton: React.FC<BuyButtonProps> = ({ product, onClick }) => {
   return (
     <div>
-      <button className="bg-button-green text-white uppercase py-[20px] mt-[24px] lg:mt-[26px] px-[36px] lg:px-[24px] mb-6">
+      <button
+        onClick={() => onClick(product.id)}
+        className="bg-button-green text-white uppercase py-3 px-6 mt-[24px] mb-6"
+      >
         Beställ
       </button>
     </div>

@@ -35,14 +35,11 @@ const ProductList: React.FC<ProductListProps> = () => {
   return (
     <div className="flex justify-center">
       <div className="w-full md:w-3/4">
-        {/* Lista med 4 i bredd */}
-        <div className="grid grid-cols-2 md:grid-cols-4 grid-flow-row gap-4">
-          {products &&
+        <div className="grid grid-cols-2 px-3 md:px-0 sm:grid-cols-3 md:grid-cols-4 grid-flow-row gap-4">
+          {(products &&
             products.map((product, index) => (
               <ProductCard key={index} product={product} />
-            ))}
-
-          <p>{loadingError}</p>
+            ))) || <p>{loadingError}</p>}
         </div>
       </div>
     </div>

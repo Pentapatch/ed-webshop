@@ -17,7 +17,9 @@ const ActionIcon: React.FC<ActionIconProps> = ({
     <a href={href} className={`flex flex-col items-center ${className}`}>
       <div className="hidden md:block">{largeIcon}</div>
       <div className="block md:hidden">{smallIcon}</div>
-      <p className="font-brandonGrotesque uppercase text-xs">{text}</p>
+      <p className="hidden md:block font-brandonGrotesque uppercase text-xs">
+        {text}
+      </p>
     </a>
   );
 };

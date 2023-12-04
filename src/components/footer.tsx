@@ -56,7 +56,7 @@ const Footer: React.FC<FooterProps> = () => {
         <Socials />
       </div>
       {/* Betallösningar */}
-      <div className="hidden md:flex relative w-full gap-6 justify-center top-48">
+      <div className="hidden md:flex relative h-24 gap-6 justify-center top-96">
         <Image
           src="/swish-logotype.svg"
           width={198}

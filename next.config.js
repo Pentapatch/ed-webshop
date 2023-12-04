@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['blombruket.se'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'blombruket.se',
+                port: '',
+                pathname: '/**',
+            },
+        ],
     },
 }
 
