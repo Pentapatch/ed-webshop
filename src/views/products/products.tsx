@@ -1,16 +1,16 @@
 import { FlowerProductListDto } from "@/contracts/flowerProductListDto";
+import AccentedLabel from "../../components/common/accentedLabel";
+import GraphicalInfo from "../../components/layout/graphicalInfo";
+import HeroBanner from "../../components/layout/heroBanner";
 import ProductCard from "./productCard";
-import Accent from "./accent";
-import GraphicalInfo from "./graphicalInfo";
-import HeroBanner from "./heroBanner";
 
-interface ProductListProps {
+interface ProductsProps {
   products: FlowerProductListDto[];
   loadingError?: string;
   handleSelectProduct: (id: number) => void;
 }
 
-const ProductList: React.FC<ProductListProps> = ({
+const Products: React.FC<ProductsProps> = ({
   products,
   loadingError = "",
   handleSelectProduct,
@@ -30,7 +30,7 @@ const ProductList: React.FC<ProductListProps> = ({
         <div className="w-full md:w-3/4">
           <GraphicalInfo />
           <div id="list"></div>
-          <Accent text="✔︎ FRI FRAKT VID KÖP ÖVER 500 KR" />
+          <AccentedLabel text="✔︎ FRI FRAKT VID KÖP ÖVER 500 KR" />
           <div className="grid grid-cols-2 px-3 md:px-0 sm:grid-cols-3 md:grid-cols-4 grid-flow-row gap-4 mb-4">
             {(products &&
               products.map((product, index) => (
@@ -47,4 +47,4 @@ const ProductList: React.FC<ProductListProps> = ({
   );
 };
 
-export default ProductList;
+export default Products;

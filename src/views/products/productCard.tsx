@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FlowerProductListDto } from "@/contracts/flowerProductListDto";
-import BuyButton from "./buyButton";
+import ActionButton from "../../components/common/actionButton";
 
 interface ProductCardProps {
   product: FlowerProductListDto;
@@ -23,6 +23,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
       : `${minPrice.price} - ${maxPrice.price} ${currency}`;
   };
 
+  const handleOrder = () => {
+    onClick(product.id);
+  };
+
   return (
     <a
       onClick={() => onClick(product.id)}
@@ -40,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
       </h5>
       <p>{getPriceRange()}</p>
       <div className="mt-auto">
-        <BuyButton product={product} onClick={() => {}} />
+        <ActionButton onClick={handleOrder} text="Beställ" />
       </div>
     </a>
   );

@@ -1,12 +1,12 @@
 "use client";
 
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import ProductDetails from "@/components/productDetails";
-import ProductList from "@/components/productList";
+import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
 import { FlowerProductDto } from "@/contracts/flowerProductDto";
 import { FlowerProductListDto } from "@/contracts/flowerProductListDto";
 import { getProduct, getProducts } from "@/services/productService";
+import ProductDetails from "@/views/product/productDetails";
+import Products from "@/views/products/products";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -70,7 +70,7 @@ export default function Home() {
       <div className="mt-14 md:mt-20"></div>
       {/* Content here */}
       {(selectedProduct && <ProductDetails product={selectedProduct} />) || (
-        <ProductList
+        <Products
           products={products}
           loadingError={loadingError}
           handleSelectProduct={handleSelectProduct}
