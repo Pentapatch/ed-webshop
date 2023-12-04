@@ -1,22 +1,26 @@
+import React from "react";
+
 interface ActionIconProps {
-  largeIcon: React.ReactNode;
-  smallIcon: React.ReactNode;
+  icon: React.ReactElement;
   text: string;
   href: string;
   className?: string;
 }
 
 const ActionIcon: React.FC<ActionIconProps> = ({
-  largeIcon,
-  smallIcon,
   text,
+  icon,
   href,
   className = "",
 }) => {
   return (
     <a href={href} className={`flex flex-col items-center ${className}`}>
-      <div className="hidden md:block">{largeIcon}</div>
-      <div className="block md:hidden">{smallIcon}</div>
+      <div className="hidden md:block">
+        {React.cloneElement(icon, { fontSize: "large" })}
+      </div>
+      <div className="block md:hidden">
+        {React.cloneElement(icon, { fontSize: "medium" })}
+      </div>
       <p className="hidden md:block font-brandonGrotesque uppercase text-xs">
         {text}
       </p>

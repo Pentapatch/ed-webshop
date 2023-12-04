@@ -2,7 +2,7 @@ import { FlowerProductDto } from "@/contracts/flowerProductDto";
 import { ProductVariantDto } from "@/contracts/productVariantDto";
 import Image from "next/image";
 import { useState } from "react";
-import BuyButton from "./buyButton";
+import ActionButton from "../../components/common/actionButton";
 import ProductVariantList from "./productVariantList";
 
 interface ProductDetailsProps {
@@ -17,6 +17,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
   const handleSelectVariant = (variant: ProductVariantDto) => {
     setSelectedVariant(variant);
+  };
+
+  const handleAddToCart = () => {
+    // TODO: Implement add to cart logic
+    console.log("Add to cart clicked");
   };
 
   return (
@@ -47,7 +52,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
                   handleSelectVariant={handleSelectVariant}
                 />
               )}
-              <BuyButton product={product} onClick={() => {}} />
+              <ActionButton
+                onClick={handleAddToCart}
+                text="Lägg till i varukorg"
+              />
             </div>
           </div>
         </div>

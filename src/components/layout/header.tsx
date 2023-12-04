@@ -1,9 +1,9 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import ActionIcon from "./actionIcon";
+import ActionIcon from "../common/actionIcon";
 import Logotype from "./logotype";
-import ShoppingCartActionIcon from "./shoppingCartActionIcon";
+import ShoppingCartActionIcon from "../common/shoppingCartActionIcon";
 
 interface HeaderProps {
   numberOfItemsInCart?: number;
@@ -20,8 +20,7 @@ const Header: React.FC<HeaderProps> = ({
         <div className="h-14 flex items-center md:h-20">
           <div className="flex justify-between w-full items-center">
             <ActionIcon
-              smallIcon={<MenuIcon fontSize="medium" />}
-              largeIcon={<MenuIcon fontSize="large" />}
+              icon={<MenuIcon />}
               text="Meny"
               href="#"
               className="ml-2 md:ml-0"
@@ -31,14 +30,12 @@ const Header: React.FC<HeaderProps> = ({
             </a>
             <div className="flex gap-2 md:gap-5 items-center">
               <ActionIcon
-                smallIcon={<PersonOutlineOutlinedIcon fontSize="medium" />}
-                largeIcon={<PersonOutlineOutlinedIcon fontSize="large" />}
+                icon={<PersonOutlineOutlinedIcon />}
                 text="Logga in"
                 href="#"
               />
               <ShoppingCartActionIcon
-                smallIcon={<ShoppingBagOutlinedIcon fontSize="medium" />}
-                largeIcon={<ShoppingBagOutlinedIcon fontSize="large" />}
+                icon={<ShoppingBagOutlinedIcon />}
                 text="Varukorg"
                 href="#"
                 numberOfItemsInCart={numberOfItemsInCart}

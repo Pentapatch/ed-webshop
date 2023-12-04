@@ -1,6 +1,7 @@
+import React from "react";
+
 interface ShoppingCartActionIconProps {
-  largeIcon: React.ReactNode;
-  smallIcon: React.ReactNode;
+  icon: React.ReactElement;
   text: string;
   href: string;
   numberOfItemsInCart?: number;
@@ -8,8 +9,7 @@ interface ShoppingCartActionIconProps {
 }
 
 const ShoppingCartActionIcon: React.FC<ShoppingCartActionIconProps> = ({
-  largeIcon,
-  smallIcon,
+  icon,
   text,
   href,
   numberOfItemsInCart = 0,
@@ -23,8 +23,12 @@ const ShoppingCartActionIcon: React.FC<ShoppingCartActionIconProps> = ({
       <div className="absolute bg-light-green rounded-full w-4 h-4 md:w-6 md:h-6 flex justify-center items-center left-3 md:left-9">
         <p className="text-xs font-bold text-white">{numberOfItemsInCart}</p>
       </div>
-      <div className="hidden md:block">{largeIcon}</div>
-      <div className="block md:hidden">{smallIcon}</div>
+      <div className="hidden md:block">
+        {React.cloneElement(icon, { fontSize: "large" })}
+      </div>
+      <div className="block md:hidden">
+        {React.cloneElement(icon, { fontSize: "medium" })}
+      </div>
       <p className="hidden md:block font-brandonGrotesque uppercase text-xs">
         {text}
       </p>
