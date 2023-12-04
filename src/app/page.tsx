@@ -1,5 +1,6 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import ProductList from "@/components/productList";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Header />
       <div className="mt-14 md:mt-20"></div>
       {/* Content here */}
+      <ProductList />
       <Footer />
     </main>
   );
