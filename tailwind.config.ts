@@ -18,6 +18,8 @@ const config: Config = {
         "border-beige": "#f9f4e8",
         "button-green": "#1d472f",
         "light-green": "#43955f",
+        "light-gray": "#f2f2f2",
+        "medium-gray": "#D2D2D2",
       },
       fontFamily: {
         ivypresto: ["Ivypresto", "sans"],

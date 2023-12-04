@@ -5,7 +5,7 @@ interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = () => {
   return (
-    <footer className="bg-button-green text-white h-[516px] flex absolute w-full justify-center">
+    <footer className="bg-button-green text-white h-[400px] md:h-[516px] flex absolute w-full justify-center">
       <div className="w-full md:w-3/4 h-full flex items-center absolute">
         <div className="flex justify-evenly md:justify-between w-full h-[360px]">
           <Image
@@ -56,7 +56,7 @@ const Footer: React.FC<FooterProps> = () => {
         <Socials />
       </div>
       {/* Betallösningar */}
-      <div className="hidden md:flex relative w-full gap-6 justify-center top-48">
+      <div className="hidden md:flex relative h-24 gap-6 justify-center top-96">
         <Image
           src="/swish-logotype.svg"
           width={198}
