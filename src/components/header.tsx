@@ -2,14 +2,18 @@ import MenuIcon from "@mui/icons-material/Menu";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import ActionIcon from "./actionIcon";
-import ShoppingCartActionIcon from "./shoppingCartActionIcon";
 import Logotype from "./logotype";
+import ShoppingCartActionIcon from "./shoppingCartActionIcon";
 
 interface HeaderProps {
   numberOfItemsInCart?: number;
+  onGoBackToStore: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ numberOfItemsInCart = 0 }) => {
+const Header: React.FC<HeaderProps> = ({
+  numberOfItemsInCart = 0,
+  onGoBackToStore,
+}) => {
   return (
     <header className="bg-white fixed top-0 w-full z-10 flex justify-center">
       <div className="w-full md:w-3/4">
@@ -22,11 +26,13 @@ const Header: React.FC<HeaderProps> = ({ numberOfItemsInCart = 0 }) => {
               href="#"
               className="ml-2 md:ml-0"
             />
-            <Logotype
-              src="/blombruket-logo.svg"
-              href="#"
-              alt="Blombrukets logotyp"
-            />
+            <a href="#" onClick={onGoBackToStore}>
+              <Logotype
+                src="/blombruket-logo.svg"
+                href="#"
+                alt="Blombrukets logotyp"
+              />
+            </a>
             <div className="flex gap-2 md:gap-5 items-center">
               <ActionIcon
                 smallIcon={<PersonOutlineOutlinedIcon fontSize="medium" />}

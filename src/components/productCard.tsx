@@ -4,9 +4,10 @@ import BuyButton from "./buyButton";
 
 interface ProductCardProps {
   product: FlowerProductListDto;
+  onClick: (id: number) => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
   const currency: string = "kr";
 
   const getPriceRange = () => {
@@ -23,7 +24,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <div className="flex flex-col text-center bg-white border-2 border-border-beige">
+    <a
+      onClick={() => onClick(product.id)}
+      href="#"
+      className="flex flex-col text-center bg-white border-2 border-border-beige"
+    >
       <Image
         src={product.imagePath}
         alt={`Bild på ${product.title}`}
@@ -37,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="mt-auto">
         <BuyButton product={product} onClick={() => {}} />
       </div>
-    </div>
+    </a>
   );
 };
 

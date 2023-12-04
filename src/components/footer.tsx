@@ -5,7 +5,7 @@ interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = () => {
   return (
-    <footer className="bg-button-green text-white h-[516px] flex absolute w-full justify-center">
+    <footer className="bg-button-green text-white h-[400px] md:h-[516px] flex absolute w-full justify-center">
       <div className="w-full md:w-3/4 h-full flex items-center absolute">
         <div className="flex justify-evenly md:justify-between w-full h-[360px]">
           <Image

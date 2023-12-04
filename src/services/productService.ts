@@ -13,9 +13,10 @@ const getProducts = async () => {
     }
 };
 
-const getProduct = async () => {
+const getProduct = async (id: number) => {
     try {
-        const response = await axios.get<FlowerProductDto>(baseUrl);
+        let endpoint = `${baseUrl}/${id}`;
+        const response = await axios.get<FlowerProductDto>(endpoint);
         return response.data;
     } catch (error: any) {
         throw createErrorMessage(error);
