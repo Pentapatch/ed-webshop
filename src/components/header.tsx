@@ -27,11 +27,7 @@ const Header: React.FC<HeaderProps> = ({
               className="ml-2 md:ml-0"
             />
             <a href="#" onClick={onGoBackToStore}>
-              <Logotype
-                src="/blombruket-logo.svg"
-                href="#"
-                alt="Blombrukets logotyp"
-              />
+              <Logotype src="/blombruket-logo.svg" alt="Blombrukets logotyp" />
             </a>
             <div className="flex gap-2 md:gap-5 items-center">
               <ActionIcon
