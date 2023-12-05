@@ -7,17 +7,28 @@ import ActionButton from "../common/actionButton";
 
 interface ShoppingCartPopupProps {
   cart: ShoppingCart;
+  isOpen: boolean;
+  onCloseShoppingCart: () => void;
 }
 
-const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = ({ cart }) => {
+const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = ({
+  cart,
+  isOpen,
+  onCloseShoppingCart,
+}) => {
   const getLinePrice = (item: ShoppingCartEntry) => {
     return item.pricePerUnit * item.quantity;
   };
 
+  if (!isOpen) return null;
+
   return (
-    <div className="inset-0 flex items-center justify-center">
-      <div className="w-[512px] p-6 relative bg-white shadow-2xl">
-        <button className="absolute right-3 top-3">
+    <div className="max-w-[512px] w-full flex items-center justify-center fixed z-20 top-12 md:top-20 px-2 md:px-0">
+      <div className="w-full p-6 relative bg-white shadow-2xl">
+        <button
+          className="absolute right-3 top-3"
+          onClick={onCloseShoppingCart}
+        >
           <Image
             src="/login-close.png"
             alt={`Grafik för att stänga varukorgen`}
@@ -26,12 +37,12 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = ({ cart }) => {
           />
         </button>
         <h6 className="text-center uppercase text-xl mb-2">Min varukorg</h6>
-        <ul className="min-h-[120px] max-h-[370px] overflow-y-auto overflow-x-hidden">
+        <ul className="min-h-[120px] max-h-[400px] overflow-y-auto overflow-x-hidden">
           {cart.items.length > 0 &&
             cart.items.map((item, index) => (
               <li
                 key={index}
-                className="flex justify-between items-center"
+                className="flex justify-between items-center text-sm md:text-base py-1"
                 style={{
                   borderBottom:
                     index < cart.items.length - 1
@@ -63,7 +74,9 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = ({ cart }) => {
                   </div>
                 </div>
                 <div className="flex flex-col text-right">
-                  <p className="whitespace-nowrap">{getLinePrice(item)} kr</p>
+                  <p className="whitespace-nowrap pr-2">
+                    {getLinePrice(item)} kr
+                  </p>
                   <TinyButton
                     src="/circle-remove-black.svg"
                     onClick={() => {}}

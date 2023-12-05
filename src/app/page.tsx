@@ -2,7 +2,6 @@
 
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
-import ShoppingCartPopup from "@/components/layout/shoppingCartPopup";
 import { FlowerProductDto } from "@/contracts/flowerProductDto";
 import { FlowerProductListDto } from "@/contracts/flowerProductListDto";
 import { ProductVariantDto } from "@/contracts/productVariantDto";
@@ -24,6 +23,7 @@ export default function Home() {
   const [shoppingCart, setShoppingCart] = useState<ShoppingCart>({
     items: [],
   });
+  const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
 
   const handleAddItemToCart = (
     product: FlowerProductDto,
@@ -52,6 +52,8 @@ export default function Home() {
         items: [...prevCart.items, newItem],
       }));
     }
+
+    handleOpenShoppingCart();
   };
 
   const getNumberOfItemsInShoppingCart = () => {
@@ -102,17 +104,28 @@ export default function Home() {
     setSelectedProductId(null);
   };
 
+  const handleOpenShoppingCart = () => {
+    setIsShoppingCartOpen(true);
+  };
+
+  const handleCloseShoppingCart = () => {
+    setIsShoppingCartOpen(false);
+  };
+
   return (
     <main className="">
       <link rel="stylesheet" href="https://use.typekit.net/igm8ala.css"></link>
       <link rel="icon" href="/favicon.png" />
       <Header
-        onGoBackToStore={handleGoBackToStore}
         numberOfItemsInCart={getNumberOfItemsInShoppingCart()}
+        shoppingCart={shoppingCart}
+        isShoppingCartOpen={isShoppingCartOpen}
+        onGoBackToStore={handleGoBackToStore}
+        onOpenShoppingCart={handleOpenShoppingCart}
+        onCloseShoppingCart={handleCloseShoppingCart}
       />
       <div className="mt-14 md:mt-20"></div>
       {/* Content here */}
-      <ShoppingCartPopup cart={shoppingCart} />
       {(selectedProduct && (
         <ProductDetails
           product={selectedProduct}

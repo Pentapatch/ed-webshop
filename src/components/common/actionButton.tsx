@@ -12,7 +12,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`bg-button-green hover:bg-button-green-hover text-white uppercase py-3 px-6 mt-[24px] mb-6 ${className}`}
+      className={`bg-button-green hover:bg-button-green-hover text-white uppercase py-3 px-6 mt-[24px] ${className}`}
     >
       {text}
     </button>

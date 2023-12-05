@@ -3,7 +3,7 @@ import React from "react";
 interface ShoppingCartActionIconProps {
   icon: React.ReactElement;
   text: string;
-  href: string;
+  onOpenShoppingCart: () => void;
   numberOfItemsInCart?: number;
   className?: string;
 }
@@ -11,13 +11,13 @@ interface ShoppingCartActionIconProps {
 const ShoppingCartActionIcon: React.FC<ShoppingCartActionIconProps> = ({
   icon,
   text,
-  href,
   numberOfItemsInCart = 0,
   className = "",
+  onOpenShoppingCart,
 }) => {
   return (
-    <a
-      href={href}
+    <button
+      onClick={onOpenShoppingCart}
       className={`flex flex-col items-center relative ${className} mr-4 md:mr-0`}
     >
       <div className="absolute bg-light-green rounded-full w-4 h-4 md:w-6 md:h-6 flex justify-center items-center left-3 md:left-9">
@@ -32,7 +32,7 @@ const ShoppingCartActionIcon: React.FC<ShoppingCartActionIconProps> = ({
       <p className="hidden md:block font-brandonGrotesque uppercase text-xs">
         {text}
       </p>
-    </a>
+    </button>
   );
 };
 
