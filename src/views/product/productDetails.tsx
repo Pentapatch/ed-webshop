@@ -7,9 +7,16 @@ import ProductVariantList from "./productVariantList";
 
 interface ProductDetailsProps {
   product: FlowerProductDto;
+  onAddItemToCart: (
+    product: FlowerProductDto,
+    variant: ProductVariantDto
+  ) => void;
 }
 
-const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
+const ProductDetails: React.FC<ProductDetailsProps> = ({
+  product,
+  onAddItemToCart,
+}) => {
   const [selectedVariant, setSelectedVariant] =
     useState<ProductVariantDto | null>(
       product.variants.length > 0 ? product.variants[0] : null
@@ -20,8 +27,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   };
 
   const handleAddToCart = () => {
-    // TODO: Implement add to cart logic
-    console.log("Add to cart clicked");
+    if (selectedVariant === null) return;
+
+    onAddItemToCart(product, selectedVariant);
   };
 
   return (
