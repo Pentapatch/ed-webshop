@@ -19,6 +19,7 @@ const ShoppingCartList: React.FC<ShoppingCartListProps> = ({
   <ul className="min-h-[120px] max-h-[400px] overflow-y-auto overflow-x-hidden">
     {(cart.items.length > 0 &&
       cart.items.map((item, index) => (
+        // Individual shopping cart row
         <ShoppingCartRow
           key={index}
           item={item}
@@ -30,6 +31,7 @@ const ShoppingCartList: React.FC<ShoppingCartListProps> = ({
         />
       ))) || (
       <li>
+        {/* Empty cart message */}
         <p>Varukorgen är tom</p>
       </li>
     )}

@@ -30,6 +30,7 @@ const ShoppingCartRow: React.FC<ShoppingCartRowProps> = ({
         borderBottom: index < length - 1 ? "2px solid #f9f4e8" : "none",
       }}
     >
+      {/* Image */}
       <Image
         src={item.imagePath}
         alt={`Bild på ${item.product.title} - ${item.variant.name}`}
@@ -37,12 +38,14 @@ const ShoppingCartRow: React.FC<ShoppingCartRowProps> = ({
         height={64}
       />
       <div className="w-full flex flex-col pr-3">
+        {/* Title and price sum */}
         <div className="w-full flex justify-between">
           <p>
             <span>{item.product.title}</span> - <span>{item.variant.name}</span>
           </p>
           <p className="whitespace-nowrap">{getLinePrice()} kr</p>
         </div>
+        {/* Quantity, quantity controls and remove item */}
         <div className="w-full flex justify-between">
           <div className="flex gap-3 items-center text-center">
             <TinyButton

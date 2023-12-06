@@ -26,6 +26,7 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = ({
     {isOpen && (
       <div className="max-w-[512px] w-full flex items-center justify-center fixed z-20 top-12 md:top-20 px-2 md:px-0">
         <div className="w-full p-6 relative bg-white shadow-2xl">
+          {/* Close popup button */}
           <button
             className="absolute right-3 top-3"
             onClick={onCloseShoppingCart}
@@ -37,13 +38,16 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = ({
               height={50}
             />
           </button>
+          {/* Title */}
           <h6 className="text-center uppercase text-xl mb-2">Min varukorg</h6>
+          {/* List of shopping cart rows */}
           <ShoppingCartList
             cart={cart}
             onDecreaseCartItemQuantity={onDecreaseCartItemQuantity}
             onIncreaseCartItemQuantity={onIncreaseCartItemQuantity}
             onRemoveCartItem={onRemoveCartItem}
           />
+          {/* Checkout button */}
           <ActionButton
             text="Till kassan"
             onClick={() => {}}
