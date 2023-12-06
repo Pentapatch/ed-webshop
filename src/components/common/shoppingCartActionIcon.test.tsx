@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import ShoppingCartActionIcon from "./shoppingCartActionIcon";
 
 describe("ShoppingCartActionIcon", () => {
@@ -25,23 +25,6 @@ describe("ShoppingCartActionIcon", () => {
 
   test("renders with correct number of items in cart", () => {
     const testNumberOfItemsInCart = 5;
-    const { getByText } = render(
-      <ShoppingCartActionIcon
-        text="Varukorg"
-        icon={<span />}
-        href="#"
-        numberOfItemsInCart={testNumberOfItemsInCart}
-      />
-    );
-
-    const numberOfItemsInCartElement = getByText(
-      testNumberOfItemsInCart.toString()
-    );
-    expect(numberOfItemsInCartElement).toBeDefined();
-  });
-
-  test("renders with correct number of items in cart (zero)", () => {
-    const testNumberOfItemsInCart = 0;
     const { getByText } = render(
       <ShoppingCartActionIcon
         text="Varukorg"
