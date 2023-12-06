@@ -33,10 +33,15 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = () => {
         <div
           ref={popupRef}
           className="max-w-[512px] w-full flex items-center justify-center fixed z-20 top-12 md:top-20 px-2 md:px-0"
+          data-testid="shopping-cart-popup"
         >
           <div className="w-full p-6 relative bg-white shadow-2xl">
             {/* Close popup button */}
-            <button className="absolute right-3 top-3" onClick={closePopup}>
+            <button
+              className="absolute right-3 top-3"
+              onClick={closePopup}
+              data-testid="shopping-cart-close-button"
+            >
               <Image
                 src="/login-close.png"
                 alt={`Grafik för att stänga varukorgen`}
@@ -45,15 +50,22 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = () => {
               />
             </button>
             {/* Title */}
-            <h6 className="text-center uppercase text-xl mb-2">Min varukorg</h6>
+            <h6
+              className="text-center uppercase text-xl mb-2"
+              data-testid="title"
+            >
+              Min varukorg
+            </h6>
             {/* List of shopping cart rows */}
             <ShoppingCartList />
             {/* Checkout button */}
-            <ActionButton
-              text="Till kassan"
-              onClick={() => {}}
-              className="w-full mt-4"
-            />
+            <div data-testid="shopping-cart-checkout-button">
+              <ActionButton
+                text="Till kassan"
+                onClick={() => {}}
+                className="w-full mt-4"
+              />
+            </div>
           </div>
         </div>
       )}

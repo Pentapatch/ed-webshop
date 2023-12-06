@@ -8,7 +8,10 @@ const ShoppingCartList: React.FC<ShoppingCartListProps> = () => {
   const { shoppingCart, getCount } = useShoppingCart();
 
   return (
-    <ul className="min-h-[120px] max-h-[400px] overflow-y-auto overflow-x-hidden">
+    <ul
+      className="min-h-[120px] max-h-[400px] overflow-y-auto overflow-x-hidden"
+      data-testid="shopping-cart-list"
+    >
       {(getCount() > 0 &&
         shoppingCart.items.map((item, index) => (
           // Individual shopping cart row
