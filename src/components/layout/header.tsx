@@ -5,7 +5,8 @@ import ActionIcon from "../common/actionIcon";
 import Logotype from "./logotype";
 import ShoppingCartActionIcon from "../common/shoppingCartActionIcon";
 import { ShoppingCart } from "@/models/shoppingCart";
-import ShoppingCartPopup from "./shoppingCartPopup";
+import ShoppingCartPopup from "../shoppingCart/shoppingCartPopup";
+import { ShoppingCartEntry } from "@/models/shoppingCartEntry";
 
 interface HeaderProps {
   numberOfItemsInCart?: number;
@@ -14,6 +15,9 @@ interface HeaderProps {
   onGoBackToStore: () => void;
   onOpenShoppingCart: () => void;
   onCloseShoppingCart: () => void;
+  onIncreaseCartItemQuantity: (item: ShoppingCartEntry) => void;
+  onDecreaseCartItemQuantity: (item: ShoppingCartEntry) => void;
+  onRemoveCartItem: (item: ShoppingCartEntry) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -23,6 +27,9 @@ const Header: React.FC<HeaderProps> = ({
   onGoBackToStore,
   onOpenShoppingCart,
   onCloseShoppingCart,
+  onDecreaseCartItemQuantity,
+  onIncreaseCartItemQuantity,
+  onRemoveCartItem,
 }) => {
   return (
     <div>
@@ -66,6 +73,9 @@ const Header: React.FC<HeaderProps> = ({
             cart={shoppingCart}
             isOpen={isShoppingCartOpen}
             onCloseShoppingCart={onCloseShoppingCart}
+            onDecreaseCartItemQuantity={onDecreaseCartItemQuantity}
+            onIncreaseCartItemQuantity={onIncreaseCartItemQuantity}
+            onRemoveCartItem={onRemoveCartItem}
           />
         </div>
       </div>

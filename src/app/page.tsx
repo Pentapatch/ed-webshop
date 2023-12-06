@@ -56,6 +56,34 @@ export default function Home() {
     handleOpenShoppingCart();
   };
 
+  const handleIncreaseCartItemQuantity = (item: ShoppingCartEntry) => {
+    item.quantity++;
+
+    setShoppingCart((prevCart) => ({
+      items: [...prevCart.items],
+    }));
+  };
+
+  const handleDecreaseCartItemQuantity = (item: ShoppingCartEntry) => {
+    item.quantity--;
+
+    setShoppingCart((prevCart) => ({
+      items: [...prevCart.items],
+    }));
+
+    if (item.quantity === 0) {
+      handleRemoveCartItem(item);
+    }
+  };
+
+  const handleRemoveCartItem = (item: ShoppingCartEntry) => {
+    shoppingCart.items = shoppingCart.items.filter((i) => i !== item);
+
+    setShoppingCart((prevCart) => ({
+      items: [...prevCart.items],
+    }));
+  };
+
   const getNumberOfItemsInShoppingCart = () => {
     return shoppingCart.items.reduce((acc, item) => acc + item.quantity, 0);
   };
@@ -123,6 +151,9 @@ export default function Home() {
         onGoBackToStore={handleGoBackToStore}
         onOpenShoppingCart={handleOpenShoppingCart}
         onCloseShoppingCart={handleCloseShoppingCart}
+        onDecreaseCartItemQuantity={handleDecreaseCartItemQuantity}
+        onIncreaseCartItemQuantity={handleIncreaseCartItemQuantity}
+        onRemoveCartItem={handleRemoveCartItem}
       />
       <div className="mt-14 md:mt-20"></div>
       {/* Content here */}
