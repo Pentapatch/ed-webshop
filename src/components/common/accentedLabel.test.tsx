@@ -8,3 +8,14 @@ test("renders AccentedLabel with correct text", () => {
   const textElement = getByText(testText);
   expect(textElement).toBeInTheDocument();
 });
+
+test("renders AccentedLabel with different text values", () => {
+  const testText1 = "Första texten";
+  const testText2 = "Andra texten";
+
+  const { getByText } = render(<AccentedLabel text={testText1} />);
+  expect(getByText(testText1)).toBeInTheDocument();
+
+  render(<AccentedLabel text={testText2} />);
+  expect(getByText(testText2)).toBeInTheDocument();
+});
