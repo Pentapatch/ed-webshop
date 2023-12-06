@@ -1,18 +1,21 @@
 interface ActionButtonProps {
   onClick: () => void;
   text: string;
+  className?: string;
 }
 
-const ActionButton: React.FC<ActionButtonProps> = ({ onClick, text }) => {
+const ActionButton: React.FC<ActionButtonProps> = ({
+  onClick,
+  text,
+  className = "",
+}) => {
   return (
-    <div>
-      <button
-        onClick={onClick}
-        className="bg-button-green text-white uppercase py-3 px-6 mt-[24px] mb-6"
-      >
-        {text}
-      </button>
-    </div>
+    <button
+      onClick={onClick}
+      className={`bg-button-green hover:bg-button-green-hover text-white uppercase py-3 px-6 mt-[24px] ${className}`}
+    >
+      {text}
+    </button>
   );
 };
 

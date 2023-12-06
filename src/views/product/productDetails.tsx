@@ -1,3 +1,4 @@
+import { useShoppingCart } from "@/components/shoppingCart/useShoppingCart";
 import { FlowerProductDto } from "@/contracts/flowerProductDto";
 import { ProductVariantDto } from "@/contracts/productVariantDto";
 import Image from "next/image";
@@ -10,6 +11,8 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
+  const { addItem } = useShoppingCart();
+
   const [selectedVariant, setSelectedVariant] =
     useState<ProductVariantDto | null>(
       product.variants.length > 0 ? product.variants[0] : null
@@ -20,8 +23,9 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   };
 
   const handleAddToCart = () => {
-    // TODO: Implement add to cart logic
-    console.log("Add to cart clicked");
+    if (selectedVariant === null) return;
+
+    addItem(product, selectedVariant);
   };
 
   return (

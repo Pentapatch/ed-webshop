@@ -44,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
       </h5>
       <p>{getPriceRange()}</p>
       <div className="mt-auto">
-        <ActionButton onClick={handleOrder} text="Beställ" />
+        <ActionButton onClick={handleOrder} text="Beställ" className="mb-6" />
       </div>
     </a>
   );

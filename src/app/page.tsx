@@ -2,6 +2,7 @@
 
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
+import { ShoppingCartProvider } from "@/components/shoppingCart/shoppingCartProvider";
 import { FlowerProductDto } from "@/contracts/flowerProductDto";
 import { FlowerProductListDto } from "@/contracts/flowerProductListDto";
 import { getProduct, getProducts } from "@/services/productService";
@@ -63,20 +64,27 @@ export default function Home() {
   };
 
   return (
-    <main className="">
-      <link rel="stylesheet" href="https://use.typekit.net/igm8ala.css"></link>
-      <link rel="icon" href="/favicon.png" />
-      <Header onGoBackToStore={handleGoBackToStore} />
-      <div className="mt-14 md:mt-20"></div>
-      {/* Content here */}
-      {(selectedProduct && <ProductDetails product={selectedProduct} />) || (
-        <Products
-          products={products}
-          loadingError={loadingError}
-          handleSelectProduct={handleSelectProduct}
-        />
-      )}
-      <Footer />
-    </main>
+    <ShoppingCartProvider>
+      <main className="">
+        <link
+          rel="stylesheet"
+          href="https://use.typekit.net/igm8ala.css"
+        ></link>
+        <link rel="icon" href="/favicon.png" />
+        {/* Header */}
+        <Header onGoBackToStore={handleGoBackToStore} />
+        {/* View content */}
+        <div className="mt-14 md:mt-20"></div>
+        {(selectedProduct && <ProductDetails product={selectedProduct} />) || (
+          <Products
+            products={products}
+            loadingError={loadingError}
+            onSelectProduct={handleSelectProduct}
+          />
+        )}
+        {/* Footer */}
+        <Footer />
+      </main>
+    </ShoppingCartProvider>
   );
 }
