@@ -1,3 +1,4 @@
+import { useShoppingCart } from "@/components/shoppingCart/useShoppingCart";
 import { FlowerProductDto } from "@/contracts/flowerProductDto";
 import { ProductVariantDto } from "@/contracts/productVariantDto";
 import Image from "next/image";
@@ -7,16 +8,11 @@ import ProductVariantList from "./productVariantList";
 
 interface ProductDetailsProps {
   product: FlowerProductDto;
-  onAddItemToCart: (
-    product: FlowerProductDto,
-    variant: ProductVariantDto
-  ) => void;
 }
 
-const ProductDetails: React.FC<ProductDetailsProps> = ({
-  product,
-  onAddItemToCart,
-}) => {
+const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
+  const { addItem } = useShoppingCart();
+
   const [selectedVariant, setSelectedVariant] =
     useState<ProductVariantDto | null>(
       product.variants.length > 0 ? product.variants[0] : null
@@ -29,7 +25,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
   const handleAddToCart = () => {
     if (selectedVariant === null) return;
 
-    onAddItemToCart(product, selectedVariant);
+    addItem(product, selectedVariant);
   };
 
   return (

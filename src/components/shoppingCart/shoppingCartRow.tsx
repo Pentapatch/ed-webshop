@@ -2,24 +2,25 @@ import { ShoppingCartEntry } from "@/models/shoppingCartEntry";
 import Image from "next/image";
 import React from "react";
 import TinyButton from "../common/tinyButton";
+import { useShoppingCart } from "./useShoppingCart";
 
 interface ShoppingCartRowProps {
   item: ShoppingCartEntry;
   length: number;
   index: number;
-  onIncreaseCartItemQuantity: (item: ShoppingCartEntry) => void;
-  onDecreaseCartItemQuantity: (item: ShoppingCartEntry) => void;
-  onRemoveCartItem: (item: ShoppingCartEntry) => void;
 }
 
 const ShoppingCartRow: React.FC<ShoppingCartRowProps> = ({
   item,
   length,
   index,
-  onDecreaseCartItemQuantity,
-  onIncreaseCartItemQuantity,
-  onRemoveCartItem,
 }) => {
+  const { increaseQuantity, decreaseQuantity, removeItem } = useShoppingCart();
+
+  const handleIncreaseQuantity = () => increaseQuantity(item);
+  const handleDecreaseQuantity = () => decreaseQuantity(item);
+  const handleRemoveItem = () => removeItem(item);
+
   const getLinePrice = () => item.pricePerUnit * item.quantity;
 
   return (
@@ -50,17 +51,17 @@ const ShoppingCartRow: React.FC<ShoppingCartRowProps> = ({
           <div className="flex gap-3 items-center text-center">
             <TinyButton
               src="/circle-minus-black.svg"
-              onClick={() => onDecreaseCartItemQuantity(item)}
+              onClick={handleDecreaseQuantity}
             />
             <span className="font-bold w-4">{item.quantity}</span>
             <TinyButton
               src="/circle-plus-black.svg"
-              onClick={() => onIncreaseCartItemQuantity(item)}
+              onClick={handleIncreaseQuantity}
             />
           </div>
           <TinyButton
             src="/circle-remove-black.svg"
-            onClick={() => onRemoveCartItem(item)}
+            onClick={handleRemoveItem}
           />
         </div>
       </div>

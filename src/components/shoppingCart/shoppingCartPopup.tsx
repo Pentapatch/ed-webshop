@@ -1,32 +1,19 @@
-import { ShoppingCart } from "@/models/shoppingCart";
-import { ShoppingCartEntry } from "@/models/shoppingCartEntry";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import ActionButton from "../common/actionButton";
 import ShoppingCartList from "./shoppingCartList";
+import { useShoppingCart } from "./useShoppingCart";
 
-interface ShoppingCartPopupProps {
-  cart: ShoppingCart;
-  isOpen: boolean;
-  onCloseShoppingCart: () => void;
-  onIncreaseCartItemQuantity: (item: ShoppingCartEntry) => void;
-  onDecreaseCartItemQuantity: (item: ShoppingCartEntry) => void;
-  onRemoveCartItem: (item: ShoppingCartEntry) => void;
-}
+interface ShoppingCartPopupProps {}
 
-const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = ({
-  cart,
-  isOpen,
-  onCloseShoppingCart,
-  onDecreaseCartItemQuantity,
-  onIncreaseCartItemQuantity,
-  onRemoveCartItem,
-}) => {
+const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = () => {
+  const { isOpen, closePopup } = useShoppingCart();
+
   const popupRef = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
-      onCloseShoppingCart();
+      closePopup();
     }
   };
 
@@ -49,10 +36,7 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = ({
         >
           <div className="w-full p-6 relative bg-white shadow-2xl">
             {/* Close popup button */}
-            <button
-              className="absolute right-3 top-3"
-              onClick={onCloseShoppingCart}
-            >
+            <button className="absolute right-3 top-3" onClick={closePopup}>
               <Image
                 src="/login-close.png"
                 alt={`Grafik för att stänga varukorgen`}
@@ -63,12 +47,7 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = ({
             {/* Title */}
             <h6 className="text-center uppercase text-xl mb-2">Min varukorg</h6>
             {/* List of shopping cart rows */}
-            <ShoppingCartList
-              cart={cart}
-              onDecreaseCartItemQuantity={onDecreaseCartItemQuantity}
-              onIncreaseCartItemQuantity={onIncreaseCartItemQuantity}
-              onRemoveCartItem={onRemoveCartItem}
-            />
+            <ShoppingCartList />
             {/* Checkout button */}
             <ActionButton
               text="Till kassan"

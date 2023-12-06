@@ -7,13 +7,13 @@ import ProductCard from "./productCard";
 interface ProductsProps {
   products: FlowerProductListDto[];
   loadingError?: string;
-  handleSelectProduct: (id: number) => void;
+  onSelectProduct: (id: number) => void;
 }
 
 const Products: React.FC<ProductsProps> = ({
   products,
   loadingError = "",
-  handleSelectProduct,
+  onSelectProduct,
 }) => {
   return (
     <>
@@ -37,7 +37,7 @@ const Products: React.FC<ProductsProps> = ({
                 <ProductCard
                   key={index}
                   product={product}
-                  onClick={handleSelectProduct}
+                  onClick={onSelectProduct}
                 />
               ))) || <p>{loadingError}</p>}
           </div>

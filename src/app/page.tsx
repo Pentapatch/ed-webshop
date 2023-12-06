@@ -2,11 +2,9 @@
 
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
+import { ShoppingCartProvider } from "@/components/shoppingCart/shoppingCartProvider";
 import { FlowerProductDto } from "@/contracts/flowerProductDto";
 import { FlowerProductListDto } from "@/contracts/flowerProductListDto";
-import { ProductVariantDto } from "@/contracts/productVariantDto";
-import { ShoppingCart } from "@/models/shoppingCart";
-import { ShoppingCartEntry } from "@/models/shoppingCartEntry";
 import { getProduct, getProducts } from "@/services/productService";
 import ProductDetails from "@/views/product/productDetails";
 import Products from "@/views/products/products";
@@ -20,73 +18,6 @@ export default function Home() {
   );
   const [selectedProduct, setSelectedProduct] =
     useState<FlowerProductDto | null>(null);
-  const [shoppingCart, setShoppingCart] = useState<ShoppingCart>({
-    items: [],
-  });
-  const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
-
-  const handleAddItemToCart = (
-    product: FlowerProductDto,
-    variant: ProductVariantDto
-  ) => {
-    const existingItem = shoppingCart.items.find(
-      (item) => item.product.id === product.id && item.variant.id === variant.id
-    );
-
-    if (existingItem) {
-      existingItem.quantity += 1;
-
-      setShoppingCart((prevCart) => ({
-        items: [...prevCart.items],
-      }));
-    } else {
-      const newItem: ShoppingCartEntry = {
-        product: { id: product.id, title: product.title },
-        variant: { id: variant.id, name: variant.name },
-        imagePath: product.imagePath,
-        pricePerUnit: variant.price,
-        quantity: 1,
-      };
-
-      setShoppingCart((prevCart) => ({
-        items: [...prevCart.items, newItem],
-      }));
-    }
-
-    handleOpenShoppingCart();
-  };
-
-  const handleIncreaseCartItemQuantity = (item: ShoppingCartEntry) => {
-    item.quantity++;
-
-    setShoppingCart((prevCart) => ({
-      items: [...prevCart.items],
-    }));
-  };
-
-  const handleDecreaseCartItemQuantity = (item: ShoppingCartEntry) => {
-    item.quantity--;
-
-    setShoppingCart((prevCart) => ({
-      items: [...prevCart.items],
-    }));
-
-    if (item.quantity === 0) {
-      handleRemoveCartItem(item);
-    }
-  };
-
-  const handleRemoveCartItem = (item: ShoppingCartEntry) => {
-    shoppingCart.items = shoppingCart.items.filter((i) => i !== item);
-
-    setShoppingCart((prevCart) => ({
-      items: [...prevCart.items],
-    }));
-  };
-
-  const getNumberOfItemsInShoppingCart = () => {
-    return shoppingCart.items.reduce((acc, item) => acc + item.quantity, 0);
-  };
 
   const handleGetProducts = async () => {
     await getProducts()
@@ -132,44 +63,28 @@ export default function Home() {
     setSelectedProductId(null);
   };
 
-  const handleOpenShoppingCart = () => {
-    setIsShoppingCartOpen(true);
-  };
-
-  const handleCloseShoppingCart = () => {
-    setIsShoppingCartOpen(false);
-  };
-
   return (
-    <main className="">
-      <link rel="stylesheet" href="https://use.typekit.net/igm8ala.css"></link>
-      <link rel="icon" href="/favicon.png" />
-      <Header
-        numberOfItemsInCart={getNumberOfItemsInShoppingCart()}
-        shoppingCart={shoppingCart}
-        isShoppingCartOpen={isShoppingCartOpen}
-        onGoBackToStore={handleGoBackToStore}
-        onOpenShoppingCart={handleOpenShoppingCart}
-        onCloseShoppingCart={handleCloseShoppingCart}
-        onDecreaseCartItemQuantity={handleDecreaseCartItemQuantity}
-        onIncreaseCartItemQuantity={handleIncreaseCartItemQuantity}
-        onRemoveCartItem={handleRemoveCartItem}
-      />
-      <div className="mt-14 md:mt-20"></div>
-      {/* Content here */}
-      {(selectedProduct && (
-        <ProductDetails
-          product={selectedProduct}
-          onAddItemToCart={handleAddItemToCart}
-        />
-      )) || (
-        <Products
-          products={products}
-          loadingError={loadingError}
-          handleSelectProduct={handleSelectProduct}
-        />
-      )}
-      <Footer />
-    </main>
+    <ShoppingCartProvider>
+      <main className="">
+        <link
+          rel="stylesheet"
+          href="https://use.typekit.net/igm8ala.css"
+        ></link>
+        <link rel="icon" href="/favicon.png" />
+        {/* Header */}
+        <Header onGoBackToStore={handleGoBackToStore} />
+        {/* View content */}
+        <div className="mt-14 md:mt-20"></div>
+        {(selectedProduct && <ProductDetails product={selectedProduct} />) || (
+          <Products
+            products={products}
+            loadingError={loadingError}
+            onSelectProduct={handleSelectProduct}
+          />
+        )}
+        {/* Footer */}
+        <Footer />
+      </main>
+    </ShoppingCartProvider>
   );
 }
