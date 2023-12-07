@@ -41,7 +41,7 @@ const ShoppingCartRow: React.FC<ShoppingCartRowProps> = ({
       <div className="w-full flex flex-col pr-3">
         {/* Title and price sum */}
         <div className="w-full flex justify-between">
-          <p>
+          <p data-testid={`shopping-cart-row-title-${index}`}>
             <span>{item.product.title}</span> - <span>{item.variant.name}</span>
           </p>
           <p className="whitespace-nowrap">{getLinePrice()} kr</p>
@@ -52,16 +52,19 @@ const ShoppingCartRow: React.FC<ShoppingCartRowProps> = ({
             <TinyButton
               src="/circle-minus-black.svg"
               onClick={handleDecreaseQuantity}
+              testId={`shopping-cart-decrease-quantity-button-${index}`}
             />
             <span className="font-bold w-4">{item.quantity}</span>
             <TinyButton
               src="/circle-plus-black.svg"
               onClick={handleIncreaseQuantity}
+              testId={`shopping-cart-increase-quantity-button-${index}`}
             />
           </div>
           <TinyButton
             src="/circle-remove-black.svg"
             onClick={handleRemoveItem}
+            testId={`shopping-cart-remove-item-button-${index}`}
           />
         </div>
       </div>

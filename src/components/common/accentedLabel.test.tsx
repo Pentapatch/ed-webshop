@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import AccentedLabel from "./accentedLabel";
 
 test("renders AccentedLabel with correct text", () => {

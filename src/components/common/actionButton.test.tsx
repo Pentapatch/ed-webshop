@@ -1,5 +1,4 @@
 import { render, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import ActionButton from "./actionButton";
 
 test("renders ActionButton with correct text", () => {

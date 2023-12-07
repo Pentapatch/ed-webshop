@@ -1,5 +1,4 @@
 import { render, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import ActionIcon from "./actionIcon";
 
 test("renders ActionIcon with correct text, icon, and href", () => {
