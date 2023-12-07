@@ -17,6 +17,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://use.typekit.net/ipn6kqb.css"
+        ></link>
+        <link rel="icon" href="/favicon.png" />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );

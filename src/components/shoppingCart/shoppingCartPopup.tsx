@@ -51,7 +51,7 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = () => {
             </button>
             {/* Title */}
             <h6
-              className="text-center uppercase text-xl mb-2"
+              className="font-brandonGrotesque font-medium text-center uppercase text-lg mb-2"
               data-testid="title"
             >
               Min varukorg

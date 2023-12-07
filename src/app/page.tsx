@@ -65,12 +65,7 @@ export default function Home() {
 
   return (
     <ShoppingCartProvider>
-      <main className="">
-        <link
-          rel="stylesheet"
-          href="https://use.typekit.net/igm8ala.css"
-        ></link>
-        <link rel="icon" href="/favicon.png" />
+      <main className="font-openSans">
         {/* Header */}
         <Header onGoBackToStore={handleGoBackToStore} />
         {/* View content */}

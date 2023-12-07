@@ -25,17 +25,19 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
         backgroundPosition: "center",
       }}
     >
-      <h1 className="font-ivypresto text-3xl md:text-7xl font-bold">{title}</h1>
-      <div className="my-3 md:text-lg text-center">
+      <h1 className="font-ivypresto text-3xl md:text-7xl font-semibold">
+        {title}
+      </h1>
+      <div className="my-3 md:text-xl text-center">
         {message.map((paragraph, index) => (
           <p key={index} className="">
-            {paragraph}
+            <strong>{paragraph}</strong>
           </p>
         ))}
       </div>
       {buttonText && (
         <Link href={href}>
-          <button className="py-4 px-8 mt-6 uppercase bg-white text-black">
+          <button className="py-4 px-8 mt-6 uppercase bg-white text-black font-brandonGrotesque font-medium">
             {buttonText}
           </button>
         </Link>

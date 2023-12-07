@@ -21,8 +21,12 @@ const ProductVariant: React.FC<ProductVariantProps> = ({
       }`}
     >
       <div className="flex justify-between">
-        <span className="font-bold">{variant.name}</span>
-        <span>{variant.price} kr</span>
+        {/* Variant name */}
+        <span className="font-brandonGrotesque font-medium">
+          {variant.name}
+        </span>
+        {/* Variant price */}
+        <span className="font-thin">{variant.price} kr</span>
       </div>
     </button>
   );

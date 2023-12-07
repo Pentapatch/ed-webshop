@@ -22,11 +22,15 @@ const config: Config = {
         "light-green": "#43955f",
         "light-gray": "#f2f2f2",
         "medium-gray": "#D2D2D2",
+        "dark-gray": "#1d1d1b",
       },
       fontFamily: {
-        ivypresto: ["Ivypresto", "sans"],
-        openSans: ["Open Sans", "sans"],
-        brandonGrotesque: ["Brandon Grotesque", "sans"],
+        ivypresto: ["ivypresto-display", "serif"],
+        openSans: ["open-sans", "sans-serif"],
+        brandonGrotesque: ["brandon-grotesque", "sans-serif"],
+      },
+      fontSize: {
+        '2xs': '10px',
       },
     },
   },

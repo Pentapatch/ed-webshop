@@ -21,20 +21,24 @@ const ShoppingCartActionIcon: React.FC<ShoppingCartActionIconProps> = ({
       data-testid="shopping-cart-open-button"
     >
       <div className="absolute bg-light-green rounded-full w-4 h-4 md:w-6 md:h-6 flex justify-center items-center left-3 md:left-9">
+        {/* Product count */}
         <p
-          className="text-xs font-bold text-white"
+          className="font-brandonGrotesque text-xs font-bold text-white"
           data-testid="shopping-cart-total-quantity"
         >
           {getCount()}
         </p>
       </div>
+      {/* Large icon */}
       <div className="hidden md:block">
         {React.cloneElement(icon, { fontSize: "large" })}
       </div>
+      {/* Medium icon */}
       <div className="block md:hidden">
         {React.cloneElement(icon, { fontSize: "medium" })}
       </div>
-      <p className="hidden md:block font-brandonGrotesque uppercase text-xs">
+      {/* Icon text */}
+      <p className="hidden md:block font-brandonGrotesque uppercase text-2xs font-bold leading-snug">
         {text}
       </p>
     </button>
