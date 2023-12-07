@@ -9,7 +9,7 @@ const Logotype: React.FC<LogotypeProps> = ({ src, alt }) => {
   return (
     <div>
       <div className="hidden md:block">
-        <Image src={src} width={200} height={50} alt={alt} className="ml-24" />
+        <Image src={src} width={209} height={50} alt={alt} className="ml-20" />
       </div>
       <div className="md:hidden">
         <Image src={src} width={120} height={30} alt={alt} />

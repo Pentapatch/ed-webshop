@@ -21,7 +21,7 @@ const ActionIcon: React.FC<ActionIconProps> = ({
       <div className="block md:hidden">
         {React.cloneElement(icon, { fontSize: "medium" })}
       </div>
-      <p className="hidden md:block font-brandonGrotesque uppercase text-xs">
+      <p className="hidden md:block font-brandonGrotesque uppercase text-2xs font-bold leading-snug">
         {text}
       </p>
     </a>

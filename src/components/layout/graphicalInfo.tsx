@@ -4,7 +4,7 @@ interface GraphicalInfoProps {}
 
 const GraphicalInfo: React.FC<GraphicalInfoProps> = () => {
   return (
-    <div className="flex justify-center my-16">
+    <div className="flex justify-center my-16 font-light">
       <div className="flex flex-col md:flex-row mx-4 md:mx-0 gap-4 md:gap-16">
         <div className="flex gap-12 md:gap-0 items-center w-full md:w-40 md:text-center md:flex-col">
           <Image

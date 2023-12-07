@@ -7,7 +7,7 @@ import { useShoppingCart } from "./useShoppingCart";
 interface ShoppingCartPopupProps {}
 
 const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = () => {
-  const { isOpen, closePopup } = useShoppingCart();
+  const { isOpen, closePopup, getCount } = useShoppingCart();
 
   const popupRef = useRef<HTMLDivElement>(null);
 
@@ -26,6 +26,8 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const cartIsEmpty = getCount() === 0;
 
   return (
     <>
@@ -51,7 +53,7 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = () => {
             </button>
             {/* Title */}
             <h6
-              className="text-center uppercase text-xl mb-2"
+              className="font-brandonGrotesque font-medium text-center uppercase text-lg mb-2"
               data-testid="title"
             >
               Min varukorg
@@ -61,9 +63,11 @@ const ShoppingCartPopup: React.FC<ShoppingCartPopupProps> = () => {
             {/* Checkout button */}
             <div data-testid="shopping-cart-checkout-button">
               <ActionButton
-                text="Till kassan"
-                onClick={() => {}}
-                className="w-full mt-4"
+                text={cartIsEmpty ? "Fortsätt handla" : "Till kassan"}
+                onClick={cartIsEmpty ? closePopup : () => {}}
+                className={`w-full mt-4 ${
+                  cartIsEmpty && "bg-dark-gray hover:bg-hover-gray"
+                }`}
               />
             </div>
           </div>
