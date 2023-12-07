@@ -8,8 +8,14 @@ import {
   ShoppingCartContextProps,
 } from "./shoppingCartContext";
 
-export const ShoppingCartProvider: React.FC<{ children: ReactNode }> = ({
+interface ShoppingCartProviderProps {
+  children: ReactNode;
+  onSelectProduct: (id: number) => void;
+}
+
+export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
   children,
+  onSelectProduct,
 }) => {
   const [shoppingCart, setShoppingCart] = useState<ShoppingCart>({
     items: [],
@@ -77,6 +83,10 @@ export const ShoppingCartProvider: React.FC<{ children: ReactNode }> = ({
     setIsOpen(false);
   };
 
+  const goToProductDetails = (item: ShoppingCartEntry) => {
+    onSelectProduct(item.product.id);
+  };
+
   const contextValue: ShoppingCartContextProps = {
     shoppingCart: shoppingCart,
     isOpen: isOpen,
@@ -87,6 +97,7 @@ export const ShoppingCartProvider: React.FC<{ children: ReactNode }> = ({
     getCount,
     openPopup,
     closePopup,
+    goToProductDetails,
   };
 
   return (

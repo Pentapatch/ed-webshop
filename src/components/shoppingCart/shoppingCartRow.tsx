@@ -15,11 +15,13 @@ const ShoppingCartRow: React.FC<ShoppingCartRowProps> = ({
   length,
   index,
 }) => {
-  const { increaseQuantity, decreaseQuantity, removeItem } = useShoppingCart();
+  const { increaseQuantity, decreaseQuantity, removeItem, goToProductDetails } =
+    useShoppingCart();
 
   const handleIncreaseQuantity = () => increaseQuantity(item);
   const handleDecreaseQuantity = () => decreaseQuantity(item);
   const handleRemoveItem = () => removeItem(item);
+  const handleGoToProductDetails = () => goToProductDetails(item);
 
   const getLinePrice = () => item.pricePerUnit * item.quantity;
 
@@ -41,9 +43,12 @@ const ShoppingCartRow: React.FC<ShoppingCartRowProps> = ({
       <div className="w-full flex flex-col pr-3">
         {/* Title and price sum */}
         <div className="w-full flex justify-between">
-          <p data-testid={`shopping-cart-row-title-${index}`}>
+          <button
+            data-testid={`shopping-cart-row-title-${index}`}
+            onClick={handleGoToProductDetails}
+          >
             <span>{item.product.title}</span> - <span>{item.variant.name}</span>
-          </p>
+          </button>
           <p className="whitespace-nowrap">{getLinePrice()} kr</p>
         </div>
         {/* Quantity, quantity controls and remove item */}

@@ -64,7 +64,7 @@ export default function Home() {
   };
 
   return (
-    <ShoppingCartProvider>
+    <ShoppingCartProvider onSelectProduct={handleSelectProduct}>
       <main className="font-openSans">
         {/* Header */}
         <Header onGoBackToStore={handleGoBackToStore} />
