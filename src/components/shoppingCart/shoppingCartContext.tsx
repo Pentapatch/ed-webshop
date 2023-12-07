@@ -14,6 +14,7 @@ export interface ShoppingCartContextProps {
   getCount: () => number;
   openPopup: () => void;
   closePopup: () => void;
+  goToProductDetails: (item: ShoppingCartEntry) => void;
 }
 
 export const ShoppingCartContext = createContext<
