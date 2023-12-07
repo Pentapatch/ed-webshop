@@ -23,6 +23,7 @@ const config: Config = {
         "light-gray": "#f2f2f2",
         "medium-gray": "#D2D2D2",
         "dark-gray": "#1d1d1b",
+        "hover-gray": "#4a4a49",
       },
       fontFamily: {
         ivypresto: ["ivypresto-display", "serif"],
