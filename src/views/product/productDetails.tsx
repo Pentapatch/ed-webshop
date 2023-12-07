@@ -80,17 +80,19 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                   handleSelectVariant={handleSelectVariant}
                 />
               )}
-              {/* Add to cart button */}
-              <ActionButton
-                onClick={handleAddToCart}
-                text="Lägg till i varukorg"
-              />
-              {/* Go back button */}
-              <ActionButton
-                onClick={handleGoBackToStore}
-                text="Gå tillbaka"
-                className="ml-4 bg-dark-gray hover:bg-hover-gray"
-              />
+              <div className="flex flex-col lg:flex-row">
+                {/* Add to cart button */}
+                <ActionButton
+                  onClick={handleAddToCart}
+                  text="Lägg till i varukorg"
+                />
+                {/* Go back button */}
+                <ActionButton
+                  onClick={handleGoBackToStore}
+                  text="Gå tillbaka"
+                  className="mt-2 lg:mt-6 lg:ml-4 bg-dark-gray hover:bg-hover-gray"
+                />
+              </div>
             </div>
           </div>
         </div>
