@@ -10,7 +10,7 @@ import {
 
 interface ShoppingCartProviderProps {
   children: ReactNode;
-  onSelectProduct: (id: number) => void;
+  onSelectProduct: (productId: number, variantId: number | undefined) => void;
 }
 
 export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
@@ -84,7 +84,7 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
   };
 
   const goToProductDetails = (item: ShoppingCartEntry) => {
-    onSelectProduct(item.product.id);
+    onSelectProduct(item.product.id, item.variant.id);
   };
 
   const contextValue: ShoppingCartContextProps = {

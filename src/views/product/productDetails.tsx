@@ -2,21 +2,25 @@ import { useShoppingCart } from "@/components/shoppingCart/useShoppingCart";
 import { FlowerProductDto } from "@/contracts/flowerProductDto";
 import { ProductVariantDto } from "@/contracts/productVariantDto";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ActionButton from "../../components/common/actionButton";
 import ProductVariantList from "./productVariantList";
 
 interface ProductDetailsProps {
   product: FlowerProductDto;
+  variantId: number | null;
+  onGoBackToStore: (navigationSection: string | undefined) => void;
 }
 
-const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
+const ProductDetails: React.FC<ProductDetailsProps> = ({
+  product,
+  variantId,
+  onGoBackToStore,
+}) => {
   const { addItem } = useShoppingCart();
 
   const [selectedVariant, setSelectedVariant] =
-    useState<ProductVariantDto | null>(
-      product.variants.length > 0 ? product.variants[0] : null
-    );
+    useState<ProductVariantDto | null>(product.variants[0] ?? null);
 
   const handleSelectVariant = (variant: ProductVariantDto) => {
     setSelectedVariant(variant);
@@ -27,6 +31,21 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
     addItem(product, selectedVariant);
   };
+
+  const handleGoBackToStore = () => {
+    onGoBackToStore(product.title);
+  };
+
+  useEffect(() => {
+    if (variantId) {
+      const variant = product.variants.find((v) => v.id === variantId);
+      if (variant) {
+        setSelectedVariant(variant);
+      }
+    } else {
+      setSelectedVariant(product.variants[0] ?? null);
+    }
+  }, [variantId, product]);
 
   return (
     <div className="mt-4 md:mt-40 flex justify-center">
@@ -65,6 +84,12 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
               <ActionButton
                 onClick={handleAddToCart}
                 text="Lägg till i varukorg"
+              />
+              {/* Go back button */}
+              <ActionButton
+                onClick={handleGoBackToStore}
+                text="Gå tillbaka"
+                className="ml-4 bg-dark-gray hover:bg-hover-gray"
               />
             </div>
           </div>

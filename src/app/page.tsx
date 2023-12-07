@@ -16,6 +16,12 @@ export default function Home() {
   const [selectedProductId, setSelectedProductId] = useState<number | null>(
     null
   );
+  const [selectedProductVariantId, setSelectedProductVariantId] = useState<
+    number | null
+  >(null);
+  const [navigationSection, setNavigationSection] = useState<string | null>(
+    null
+  );
   const [selectedProduct, setSelectedProduct] =
     useState<FlowerProductDto | null>(null);
 
@@ -54,13 +60,18 @@ export default function Home() {
     }
   }, [selectedProductId]);
 
-  const handleSelectProduct = (id: number) => {
-    setSelectedProductId(id);
+  const handleSelectProduct = (
+    productId: number,
+    variantId: number | undefined
+  ) => {
+    setSelectedProductId(productId);
+    setSelectedProductVariantId(variantId ?? null);
   };
 
-  const handleGoBackToStore = () => {
+  const handleGoBackToStore = (navigationSection?: string) => {
     setSelectedProduct(null);
     setSelectedProductId(null);
+    setNavigationSection(navigationSection || null);
   };
 
   return (
@@ -70,11 +81,18 @@ export default function Home() {
         <Header onGoBackToStore={handleGoBackToStore} />
         {/* View content */}
         <div className="mt-14 md:mt-20"></div>
-        {(selectedProduct && <ProductDetails product={selectedProduct} />) || (
+        {(selectedProduct && (
+          <ProductDetails
+            product={selectedProduct}
+            variantId={selectedProductVariantId}
+            onGoBackToStore={handleGoBackToStore}
+          />
+        )) || (
           <Products
             products={products}
             loadingError={loadingError}
             onSelectProduct={handleSelectProduct}
+            navigationSection={navigationSection}
           />
         )}
         {/* Footer */}
