@@ -40,6 +40,7 @@ const setupShoppingCartMock = (customValues = {}) => {
     getCount: jest.fn(() => 2),
     openPopup: mockOpenPopup,
     closePopup: jest.fn(),
+    goToProductDetails: jest.fn(),
     ...customValues, // Custom values provided in the test
   };
 
