@@ -4,7 +4,7 @@ import ActionButton from "../../components/common/actionButton";
 
 interface ProductCardProps {
   product: FlowerProductListDto;
-  onClick: (id: number) => void;
+  onClick: (productId: number, variantId: number | undefined) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
@@ -24,14 +24,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
   };
 
   const handleOrder = () => {
-    onClick(product.id);
+    onClick(product.id, undefined);
   };
 
   return (
     <a
-      onClick={() => onClick(product.id)}
+      onClick={() => onClick(product.id, undefined)}
       href="#"
       className="flex flex-col text-center bg-white border-2 border-border-beige"
+      id={product.title}
     >
       {/* Image */}
       <Image
