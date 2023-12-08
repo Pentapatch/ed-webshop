@@ -55,17 +55,21 @@ const Products: React.FC<ProductsProps> = ({
             <ErrorDisplay text={loadingError} className="mb-4" />
           )}
           {/* Product list */}
-          <div className="grid grid-cols-2 px-3 md:px-0 sm:grid-cols-3 md:grid-cols-4 grid-flow-row gap-4 mb-4">
+          <div>
             {products && products.length > 0 ? (
-              products.map((product, index) => (
-                <ProductCard
-                  key={index}
-                  product={product}
-                  onClick={onSelectProduct}
-                />
-              ))
+              <div className="grid grid-cols-2 px-3 md:px-0 sm:grid-cols-3 md:grid-cols-4 grid-flow-row gap-4 mb-4">
+                {products.map((product, index) => (
+                  <ProductCard
+                    key={index}
+                    product={product}
+                    onClick={onSelectProduct}
+                  />
+                ))}
+              </div>
             ) : (
-              <p>Det finns inga produkter att visa.</p>
+              loadingError === null && (
+                <p className="mb-4">Det finns inga produkter att visa.</p>
+              )
             )}
           </div>
         </div>
