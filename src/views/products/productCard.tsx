@@ -30,8 +30,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
   return (
     <a
       onClick={() => onClick(product.id, undefined)}
-      href="#"
-      className="flex flex-col text-center bg-white border-2 border-border-beige"
+      className="flex flex-col text-center bg-white border-2 border-border-beige cursor-pointer"
       id={product.title}
     >
       {/* Image */}
