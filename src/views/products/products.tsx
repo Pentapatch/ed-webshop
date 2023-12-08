@@ -26,7 +26,11 @@ const Products: React.FC<ProductsProps> = ({
     );
 
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
+      const yOffset = -110;
+      const y =
+        targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   }, [navigationSection, loadingError]);
 
@@ -39,7 +43,7 @@ const Products: React.FC<ProductsProps> = ({
           "Inred med torkade blommor från Blombruket!",
         ]}
         buttonText="Till alla produkter"
-        href="#products"
+        targetId="products"
       />
       <div className="flex justify-center">
         <div className="w-full md:w-3/4">

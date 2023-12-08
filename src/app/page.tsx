@@ -59,7 +59,7 @@ export default function Home() {
       if (!loadingError) window.scrollTo(0, 0);
       handleGetProduct(selectedProductId);
     }
-  }, [selectedProductId]);
+  }, [selectedProductId, loadingError]);
 
   const handleSelectProduct = (
     productId: number,
