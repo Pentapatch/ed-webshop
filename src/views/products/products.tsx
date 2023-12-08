@@ -1,20 +1,21 @@
 import { FlowerProductListDto } from "@/contracts/flowerProductListDto";
+import { useEffect } from "react";
 import AccentedLabel from "../../components/common/accentedLabel";
 import GraphicalInfo from "../../components/layout/graphicalInfo";
 import HeroBanner from "../../components/layout/heroBanner";
 import ProductCard from "./productCard";
-import { useEffect } from "react";
+import ErrorDisplay from "@/components/common/errorDisplay";
 
 interface ProductsProps {
   products: FlowerProductListDto[];
-  loadingError?: string;
+  loadingError: string | null;
   navigationSection: string | null;
   onSelectProduct: (productId: number, variantId: number | undefined) => void;
 }
 
 const Products: React.FC<ProductsProps> = ({
   products,
-  loadingError = "",
+  loadingError,
   navigationSection,
   onSelectProduct,
 }) => {
@@ -43,16 +44,24 @@ const Products: React.FC<ProductsProps> = ({
           <GraphicalInfo />
           <div id="products"></div>
           <AccentedLabel text="✔︎ FRI FRAKT VID KÖP ÖVER 500 KR" />
+          {/* Product list */}
           <div className="grid grid-cols-2 px-3 md:px-0 sm:grid-cols-3 md:grid-cols-4 grid-flow-row gap-4 mb-4">
-            {(products &&
+            {products && products.length > 0 ? (
               products.map((product, index) => (
                 <ProductCard
                   key={index}
                   product={product}
                   onClick={onSelectProduct}
                 />
-              ))) || <p>{loadingError}</p>}
+              ))
+            ) : (
+              <p>Det finns inga produkter att visa.</p>
+            )}
           </div>
+          {/* Loading error display */}
+          {loadingError && (
+            <ErrorDisplay text={loadingError} className="mb-8" />
+          )}
         </div>
       </div>
     </>

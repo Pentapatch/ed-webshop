@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [products, setProducts] = useState<FlowerProductListDto[]>([]);
-  const [loadingError, setLoadingError] = useState("");
+  const [loadingError, setLoadingError] = useState<string | null>(null);
   const [selectedProductId, setSelectedProductId] = useState<number | null>(
     null
   );
@@ -29,7 +29,7 @@ export default function Home() {
     await getProducts()
       .then((response) => {
         setProducts(response);
-        setLoadingError("");
+        setLoadingError(null);
       })
       .catch((error) => {
         setProducts([]);
@@ -41,7 +41,7 @@ export default function Home() {
     await getProduct(id)
       .then((response) => {
         setSelectedProduct(response);
-        setLoadingError("");
+        setLoadingError(null);
       })
       .catch((error) => {
         setSelectedProduct(null);
@@ -82,6 +82,7 @@ export default function Home() {
         <Header onGoBackToStore={handleGoBackToStore} />
         {/* View content */}
         <div className="mt-14 md:mt-20"></div>
+        {}
         {(selectedProduct && (
           <ProductDetails
             product={selectedProduct}
