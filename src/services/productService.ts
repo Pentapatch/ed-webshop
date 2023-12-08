@@ -24,6 +24,6 @@ const getProduct = async (id: number) => {
 };
 
 const createErrorMessage = (axiosError: any) =>
-    axiosError.response ? axiosError.response.data : "Kunde inte kontakta servern.";
+    new Error(axiosError.response && axiosError.response.data ? axiosError.response.data : "Ingen kontakt med servern.");
 
 export { getProduct, getProducts }
