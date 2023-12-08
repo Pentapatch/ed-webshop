@@ -2,7 +2,7 @@ import { FlowerProductDto } from "@/contracts/flowerProductDto";
 import { ProductVariantDto } from "@/contracts/productVariantDto";
 import { ShoppingCart } from "@/models/shoppingCart";
 import { ShoppingCartEntry } from "@/models/shoppingCartEntry";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import {
   ShoppingCartContext,
   ShoppingCartContextProps,
@@ -17,10 +17,25 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
   children,
   onSelectProduct,
 }) => {
-  const [shoppingCart, setShoppingCart] = useState<ShoppingCart>({
-    items: [],
-  });
+  const [shoppingCart, setShoppingCart] = useState<ShoppingCart>({ items: [] });
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem("shoppingCart");
+    if (storedCart) {
+      setShoppingCart(JSON.parse(storedCart));
+    }
+  }, []);
+
+  const updateCartAndStorage = (
+    updateFunction: (prevCart: ShoppingCart) => ShoppingCart
+  ) => {
+    setShoppingCart((prevCart) => {
+      const newCart = updateFunction(prevCart);
+      localStorage.setItem("shoppingCart", JSON.stringify(newCart));
+      return newCart;
+    });
+  };
 
   const addItem = (product: FlowerProductDto, variant: ProductVariantDto) => {
     const existingItem = shoppingCart.items.find(
@@ -38,7 +53,7 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
         quantity: 1,
       };
 
-      setShoppingCart((prevCart) => ({
+      updateCartAndStorage((prevCart) => ({
         items: [...prevCart.items, newItem],
       }));
     }
@@ -48,7 +63,7 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
 
   const increaseQuantity = (item: ShoppingCartEntry) => {
     item.quantity++;
-    setShoppingCart((prevCart) => ({
+    updateCartAndStorage((prevCart) => ({
       items: [...prevCart.items],
     }));
   };
@@ -59,14 +74,14 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
     if (item.quantity === 0) {
       removeItem(item);
     } else {
-      setShoppingCart((prevCart) => ({
+      updateCartAndStorage((prevCart) => ({
         items: [...prevCart.items],
       }));
     }
   };
 
   const removeItem = (item: ShoppingCartEntry) => {
-    setShoppingCart((prevCart) => ({
+    updateCartAndStorage((prevCart) => ({
       items: prevCart.items.filter((i) => i !== item),
     }));
   };
