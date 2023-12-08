@@ -56,6 +56,7 @@ export default function Home() {
 
   useEffect(() => {
     if (selectedProductId) {
+      window.scrollTo(0, 0);
       handleGetProduct(selectedProductId);
     }
   }, [selectedProductId]);
