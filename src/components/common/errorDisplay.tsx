@@ -8,11 +8,27 @@ interface ErrorDisplayProps {
 const ErrorDisplay: React.FC<ErrorDisplayProps> = ({ text, className }) => {
   return (
     <div
-      className={`flex md:block md:text-center items-center w-full font-brandonGrotesque font-bold uppercase bg-red-300 py-6 ${className}`}
+      className={`flex items-center w-full font-brandonGrotesque bg-red-300 py-6 ${className}`}
       id="errorDisplay"
     >
       <ErrorIcon className="text-6xl mx-2" />
-      {text}
+      <div className="w-full flex flex-col">
+        {text.includes(":") ? (
+          text.split(":").map((part, index, array) => (
+            <h6
+              key={index}
+              className={
+                index === 0 ? "font-bold uppercase" : "font-openSans text-sm"
+              }
+            >
+              {part.trim()}
+              {index !== 0 && index !== array.length - 1 && ":"}
+            </h6>
+          ))
+        ) : (
+          <p>{text}</p>
+        )}
+      </div>
     </div>
   );
 };
