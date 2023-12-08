@@ -82,7 +82,6 @@ export default function Home() {
         <Header onGoBackToStore={handleGoBackToStore} />
         {/* View content */}
         <div className="mt-14 md:mt-20"></div>
-        {}
         {(selectedProduct && (
           <ProductDetails
             product={selectedProduct}
