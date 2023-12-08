@@ -1,12 +1,12 @@
 import { FlowerProductDto } from "@/contracts/flowerProductDto";
 import { ProductVariantDto } from "@/contracts/productVariantDto";
-import { ShoppingCart } from "@/models/shoppingCart";
 import { ShoppingCartEntry } from "@/models/shoppingCartEntry";
 import React, { ReactNode, useState } from "react";
 import {
   ShoppingCartContext,
   ShoppingCartContextProps,
 } from "./shoppingCartContext";
+import { useLocalStorageShoppingCart } from "./useLocalStorageShoppingCart";
 
 interface ShoppingCartProviderProps {
   children: ReactNode;
@@ -17,9 +17,7 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
   children,
   onSelectProduct,
 }) => {
-  const [shoppingCart, setShoppingCart] = useState<ShoppingCart>({
-    items: [],
-  });
+  const { shoppingCart, updateShoppingCart } = useLocalStorageShoppingCart();
   const [isOpen, setIsOpen] = useState(false);
 
   const addItem = (product: FlowerProductDto, variant: ProductVariantDto) => {
@@ -28,7 +26,8 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
     );
 
     if (existingItem) {
-      existingItem.quantity += 1;
+      existingItem.quantity++;
+      updateShoppingCart();
     } else {
       const newItem: ShoppingCartEntry = {
         product: { id: product.id, title: product.title },
@@ -38,7 +37,7 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
         quantity: 1,
       };
 
-      setShoppingCart((prevCart) => ({
+      updateShoppingCart((prevCart) => ({
         items: [...prevCart.items, newItem],
       }));
     }
@@ -48,44 +47,34 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
 
   const increaseQuantity = (item: ShoppingCartEntry) => {
     item.quantity++;
-    setShoppingCart((prevCart) => ({
-      items: [...prevCart.items],
-    }));
+    updateShoppingCart();
   };
 
   const decreaseQuantity = (item: ShoppingCartEntry) => {
     item.quantity--;
 
-    if (item.quantity === 0) {
+    if (item.quantity <= 0) {
       removeItem(item);
     } else {
-      setShoppingCart((prevCart) => ({
-        items: [...prevCart.items],
-      }));
+      updateShoppingCart();
     }
   };
 
   const removeItem = (item: ShoppingCartEntry) => {
-    setShoppingCart((prevCart) => ({
+    updateShoppingCart((prevCart) => ({
       items: prevCart.items.filter((i) => i !== item),
     }));
   };
 
-  const getCount = () => {
-    return shoppingCart.items.reduce((acc, item) => acc + item.quantity, 0);
-  };
+  const getCount = () =>
+    shoppingCart.items.reduce((acc, item) => acc + item.quantity, 0);
 
-  const openPopup = () => {
-    setIsOpen(true);
-  };
+  const openPopup = () => setIsOpen(true);
 
-  const closePopup = () => {
-    setIsOpen(false);
-  };
+  const closePopup = () => setIsOpen(false);
 
-  const goToProductDetails = (item: ShoppingCartEntry) => {
+  const goToProductDetails = (item: ShoppingCartEntry) =>
     onSelectProduct(item.product.id, item.variant.id);
-  };
 
   const contextValue: ShoppingCartContextProps = {
     shoppingCart: shoppingCart,
