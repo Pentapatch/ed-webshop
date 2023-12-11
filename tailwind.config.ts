@@ -5,6 +5,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/views/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -17,12 +18,20 @@ const config: Config = {
         "accent-purple": "#847da5",
         "border-beige": "#f9f4e8",
         "button-green": "#1d472f",
+        "button-green-hover": "#46604A",
         "light-green": "#43955f",
+        "light-gray": "#f2f2f2",
+        "medium-gray": "#D2D2D2",
+        "dark-gray": "#1d1d1b",
+        "hover-gray": "#4a4a49",
       },
       fontFamily: {
-        ivypresto: ["Ivypresto", "sans"],
-        openSans: ["Open Sans", "sans"],
-        brandonGrotesque: ["Brandon Grotesque", "sans"],
+        ivypresto: ["ivypresto-display", "serif"],
+        openSans: ["open-sans", "sans-serif"],
+        brandonGrotesque: ["brandon-grotesque", "sans-serif"],
+      },
+      fontSize: {
+        '2xs': '10px',
       },
     },
   },

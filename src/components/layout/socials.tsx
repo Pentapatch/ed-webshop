@@ -6,7 +6,9 @@ const Socials: React.FC<SocialsProps> = ({}) => {
   return (
     <>
       <div className="flex items-center justify-center md:justify-end">
-        <h6 className="text-xl uppercase">Instagram</h6>
+        <h6 className="font-brandonGrotesque font-bold text-xl uppercase">
+          Instagram
+        </h6>
         <Image
           src="/instagram-logo-white.svg"
           width={32}
@@ -16,7 +18,9 @@ const Socials: React.FC<SocialsProps> = ({}) => {
         />
       </div>
       <div className="flex items-center justify-center md:justify-end md:mt-3">
-        <h6 className="text-xl uppercase">Facebook</h6>
+        <h6 className="font-brandonGrotesque font-bold text-xl uppercase">
+          Facebook
+        </h6>
         <Image
           src="/facebook-logo-white.svg"
           width={32}
