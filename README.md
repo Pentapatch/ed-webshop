@@ -39,7 +39,7 @@ Mycket fokus har lagts på att få sidan 100% responsiv. Testa gärna i mobillä
 
 ## Till opponenter
 
-Vi har inkluderat `node_modules` i repot så ni kommer att behöva köra:
+Vi har inte inkluderat `node_modules` i repot så ni kommer att behöva köra:
 `npm install`
 i terminalen (öppna terminalen med `ctrl + ö` i Visual Studio Code) det första ni gör.
 
